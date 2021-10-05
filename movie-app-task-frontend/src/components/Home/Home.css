@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800");
+
+.container {
+  width: 100%;
+  height: 600px;
+  padding-top: 100px;
+}
+.itemcont {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.itms {
+  font-family: "Montserrat", helvetica, arial, sans-serif;
+  font-size: 14px;
+  color: #cfd6e1;
+  line-height: 1.5;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  border: 0;
+  cursor: pointer;
+}
+button:focus {
+  outline: 0;
+}
+
+.movie-card {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  max-height: 300px;
+  display: block;
+  margin: 2vh auto;
+  border-radius: 8px;
+  position: relative;
+  @media screen and (max-width: 800px) {
+    width: 95%;
+    max-width: 95%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .movie-card {
+    background-position: 50% 0%;
+    background-size: cover;
+    height: 400px;
+  }
+}
+.movie-card:hover {
+  transform: scale(1.02);
+  transition: all 0.4s;
+}
+.movie-card[data-movie="IT1"] {
+  background-image: url(https://files.mtssnetwork.ga/cdn//n/ext-img/nGsNruW3W27V6r4gkyc3iiEGsKR.jpg);
+}
+.movie-card[data-movie="IT2"] {
+  background-image: url("http://www.blastr.com/sites/blastr/files/back-to-the-future-part-ii-original.jpg");
+}
+.movie-card[data-movie="IT3"] {
+  background-image: url("https://files.mtssnetwork.ga/cdn//n/ext-img/iaNi7V6cD1ljbdcbNmjZayrCzEU.jpg");
+}
+.movie-card__overlay {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(
+    to right,
+    rgba(42, 159, 255, 0.2) 0%,
+    #212120 60%,
+    #212120 100%
+  );
+  background-blend-mode: multiply;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+@media screen and (max-width: 600px) {
+  .movie-card__overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(42, 159, 255, 0.2) 0%,
+      #212120 60%,
+      #212120 100%
+    );
+  }
+}
+.movie-card__share {
+  padding: 1em;
+  display: inline-block;
+  width: 100%;
+  max-width: 130px;
+}
+@media screen and (max-width: 600px) {
+  .movie-card__share {
+    display: block;
+    width: 100%;
+  }
+}
+
+.glow-on-hover {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
