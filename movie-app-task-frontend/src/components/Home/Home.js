@@ -20,9 +20,9 @@ export default function Home() {
   };
   const [movies, setMovies] = useState([]);
   const [series, setSeries] = useState([]);
+  const [page, setPage] = useState(10);
 
-
-  const [isShow, setIsShow] = React.useState(true);
+  const [media, setMedia] = React.useState([]);
 
 
 
@@ -33,7 +33,8 @@ export default function Home() {
 
 
   const getTop10Movies = () => {
-    return axios.get(`${url}media/media/get_media`,{ params: {} }).then((response) => {
+  
+    return axios.get(`${url}media/get_media`, {params: {  Type : "Movie"}}).then((response) => {
       console.log(response.data);
       setMovies(response.data);
     })
@@ -41,8 +42,39 @@ export default function Home() {
       console.log(error.toJSON());
     });
   };
+  useEffect(() => {
+    getTop10Series();
+  }, []);
+
+  const getTop10Series = () => {
+    return axios.get(`${url}media/get_media`, {params: {  Type : "Series"}}).then((response) => {
+      console.log(response.data);
+      setSeries(response.data);
+    });
+  };
 
 
+  const LoadMoreMovies = ()=> {
+    setPage(page+10);
+    return  axios.get(`${url}media/get_media`, {params: {Pagination: page,  Type : "Movie"}}).then((response) => {
+      console.log(response.data);
+      setMovies(response.data);
+    });
+  };
+
+  const LoadMoreSeries = ()=> {
+    setPage(page+10);
+      return  axios.get(`${url}media/get_media`, {params: {Pagination: page,  Type : "Series"}}).then((response) => {
+        console.log(response.data);
+        setSeries(response.data);
+      });
+    };
+  const LoadAllMedia = ()=> {
+    return  axios.get(`${url}media/get_media`).then((response) => {
+      console.log(response.data);
+      setMedia(response.data);
+    });
+  };
   return (
     <div className="App">
       <Search placeholder="Search for Movie Title …" ></Search>

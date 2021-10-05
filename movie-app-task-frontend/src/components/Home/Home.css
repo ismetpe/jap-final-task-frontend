@@ -122,15 +122,15 @@ button:focus {
   content: "";
   background: linear-gradient(
     45deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000
+    #00c3ff,
+    #0099ff,
+    #0066ff,
+    #0051ff,
+    #002fff,
+    #001aff,
+    #0a054d,
+    #55d2f8,
+    #060542 
   );
   position: absolute;
   top: -2px;

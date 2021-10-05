@@ -21,6 +21,7 @@ function Header() {
     <div className="topnav" id="myTopnav">
       <a href="register">Register</a>
       <a href="login">Login</a>
+      <a href="admin">Admin</a>
       <a href="/" className="active">
         Home
       </a>
