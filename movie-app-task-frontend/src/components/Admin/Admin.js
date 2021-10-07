@@ -2,8 +2,8 @@ import React, { Component, useState,Button } from "react";
 import axios from 'axios';
 import "./table.css";
 import Drawer from 'react-drag-drawer'
-import EditMovieModal from "./EditMovieModal.js";
-
+import AddMovie from "./AddMovie/AddMovie"
+import Example from "./EditModaMovie.js"
 class Admin extends Component {
     state = {
         movies: [],
@@ -29,7 +29,7 @@ class Admin extends Component {
 
 
     onEditClick = (mediaId) => {
-        console.log("usooo")
+ 
         this.setState({ isModalOpen: true })
         const movie = this.state.movies.find(a => a.id == mediaId);
         this.setState({ movie: movie })
@@ -44,7 +44,10 @@ class Admin extends Component {
         const { open } = this.state
 
         return (
-            <div>
+            <div id="modal">
+              
+                <AddMovie></AddMovie>
+                
                 <table className="table">
                     <tr>
                         <th>ID</th>
@@ -67,7 +70,7 @@ class Admin extends Component {
                     ))}
                 </table>
                 
-                <EditMovieModal show={this.state.isModalOpen} handleClose={this.handleCloseModal} item={this.state.movie} />
+              
             </div>
         )
         

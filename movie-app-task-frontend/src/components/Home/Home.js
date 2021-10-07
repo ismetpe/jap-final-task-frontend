@@ -50,6 +50,8 @@ export default function Home() {
     return axios.get(`${url}media/get_media`, {params: {  Type : "Series"}}).then((response) => {
       console.log(response.data);
       setSeries(response.data);
+    })   .catch(function (error) {
+      console.log(error.toJSON());
     });
   };
 
@@ -59,6 +61,8 @@ export default function Home() {
     return  axios.get(`${url}media/get_media`, {params: {Pagination: page,  Type : "Movie"}}).then((response) => {
       console.log(response.data);
       setMovies(response.data);
+    })   .catch(function (error) {
+      console.log(error.toJSON());
     });
   };
 
@@ -67,12 +71,16 @@ export default function Home() {
       return  axios.get(`${url}media/get_media`, {params: {Pagination: page,  Type : "Series"}}).then((response) => {
         console.log(response.data);
         setSeries(response.data);
+      })   .catch(function (error) {
+        console.log(error.toJSON());
       });
     };
   const LoadAllMedia = ()=> {
     return  axios.get(`${url}media/get_media`).then((response) => {
       console.log(response.data);
       setMedia(response.data);
+    })   .catch(function (error) {
+      console.log(error.toJSON());
     });
   };
   return (

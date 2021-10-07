@@ -4,7 +4,6 @@ table {
     width: 100%;
     margin-top: 100px;
     margin-left: 20px;
-    background-color: #4f9fce;
   }
   
   table td {
@@ -27,7 +26,4 @@ table {
     text-align: center;
     background-color: rgba(3, 3, 3, 0.959);
     color: white;
-  }
-  table .editButton{
-      width: 10px;
   }

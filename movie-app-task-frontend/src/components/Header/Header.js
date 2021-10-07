@@ -22,6 +22,7 @@ function Header() {
       <a href="register">Register</a>
       <a href="login">Login</a>
       <a href="admin">Admin</a>
+      <a href="user">User</a>
       <a href="/" className="active">
         Home
       </a>
