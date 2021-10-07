@@ -18,23 +18,11 @@ export default function User() {
         <h2>
 WELCOME USER 
     </h2>
-      <Tabs >
-        <Tab onClick={handleClick} active={active === 0} id={0} >
-          Buy Tickets
-        </Tab>
 
-        <Tab onClick={handleClick} active={active === 1} id={1} >
-         Bought Tickets
-        </Tab>
-      </Tabs>
-      <>
-        <Content active={active === 0}>
+   
         <BuyTicket></BuyTicket>
-        </Content>
-        <Content active={active === 1}>
         <BoughtTickets id={1}></BoughtTickets>
-        </Content>
-      </>
+ 
 
     </div>
   );

@@ -9,21 +9,21 @@ export default function AddMovie(){
     const [releaseYear, setReleaseYear] = useState("");
   
     const handleSubmit = (event) => {
+        event.preventDefault();
         return axios.post(`https://localhost:5001/api/admin/add_movie`, {title : title, description : description,img_url : imageURL, release_year : releaseYear}).then((response) => {
             console.log(response.data);
-            
-            console.log(response.data);
+        
             if (response.status === 200) {
             alert("You have successfully added movie");
             }
           })   .catch(function (error) {
             console.log(error.toJSON());
           });
-      event.preventDefault();
+     
     }
   
     return (
-      <form onSubmit={handleSubmit}>
+      <form className="forms" onSubmit={handleSubmit}>
         <h1>Add new movie</h1>
   
         <label>
@@ -64,7 +64,7 @@ export default function AddMovie(){
             onChange={e => setReleaseYear(e.target.value)}
             required />
         </label>
-
+    
         <button>Add</button>
       </form>
     );

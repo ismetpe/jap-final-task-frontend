@@ -74,7 +74,7 @@ export default function BuyTicket(props) {
     }
     return (
 
-        <div>
+        <div className="forms">
             <h2>Select movie</h2>
             <select onChange={getAllScreningsByMovie}>
                 {movies.map((movie) => (<option key={movie.id} value={movie.id}>{movie.title}</option>))}

@@ -4,7 +4,8 @@ import "./table.css";
 import Drawer from 'react-drag-drawer'
 import AddMovie from "./AddMovie/AddMovie"
 import Example from "./EditModaMovie.js"
-class Admin extends Component {
+import AddScreening from "./AddScreening/AddScreening"
+class AdminMovie extends Component {
     state = {
         movies: [],
         isModalOpen: false,
@@ -46,8 +47,9 @@ class Admin extends Component {
         return (
             <div id="modal">
               
-                <AddMovie></AddMovie>
-                
+  
+              <AddMovie></AddMovie>
+                <AddScreening></AddScreening>
                 <table className="table">
                     <tr>
                         <th>ID</th>
@@ -76,4 +78,4 @@ class Admin extends Component {
         
     }
 }
-export default Admin;
+export default AdminMovie;
