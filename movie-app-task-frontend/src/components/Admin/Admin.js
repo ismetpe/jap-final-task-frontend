@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./table.css";
 import Drawer from 'react-drag-drawer'
 import AddMovie from "./AddMovie/AddMovie"
-import Example from "./EditModaMovie.js"
+import EditModalMovie from "./EditModalMovie.js"
 import AddScreening from "./AddScreening/AddScreening"
 class AdminMovie extends Component {
     state = {
@@ -30,7 +30,7 @@ class AdminMovie extends Component {
 
 
     onEditClick = (mediaId) => {
- 
+
         this.setState({ isModalOpen: true })
         const movie = this.state.movies.find(a => a.id == mediaId);
         this.setState({ movie: movie })
@@ -56,6 +56,7 @@ class AdminMovie extends Component {
                         <th>Image</th>
                         <th>Title</th>
                         <th>Text</th>
+                        <th>Release Date</th>
                         <th>Edit</th>
            
                     </tr>
@@ -65,7 +66,8 @@ class AdminMovie extends Component {
                             <td><img src={movie.img_url}/></td>
                             <td>{movie.title}</td>
                             <td>{movie.description}</td>
-                            <td> <button className="editButton" onClick={() => this.onEditClick(movie.id)} ></button></td>
+                            <td>{movie.release_year}</td>
+                            <td> <EditModalMovie movieId = {movie.id} movieImage={movie.img_url} movieTitle={movie.title} movieDescription={movie.description}  movieReleaseYear = {movie.release_year}></EditModalMovie></td>
                             
                            
                         </tr>
