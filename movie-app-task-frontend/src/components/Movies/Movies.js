@@ -12,9 +12,9 @@ const Movies = (props) => {
       key={movie.id}
       id={movie.id}
       title={movie.title}
-      release_year={movie.release_year}
+      release_year={movie.releaseYear}
       actors={movie.Actors}
-      imageURL={movie.img_url}
+      imageURL={movie.imgUrl}
       rating={movie.ratings}
       description={movie.description}
     //{moviesList}

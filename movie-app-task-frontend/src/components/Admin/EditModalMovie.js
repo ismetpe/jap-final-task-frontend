@@ -8,9 +8,9 @@ Modal.setAppElement("#root");
 export default function EditModalMovie(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState(props.movieTitle);
-  const [description, setDescription] = useState("");
-  const [imageURL, setImageURL] = useState("");
-  const [releaseYear, setReleaseYear] = useState("");
+  const [description, setDescription] = useState(props.movieDescription);
+  const [imageURL, setImageURL] = useState(props.movieImage);
+  const [releaseYear, setReleaseYear] = useState(props.movieReleaseYear);
 
   function toggleModal() {
     setIsOpen(!isOpen);
@@ -72,7 +72,7 @@ const handleSave = () => {
           <input
             name="description"
             type="text"
-            value={props.movieDescription}
+            value={description}
             onChange={e => setDescription(e.target.value)}
             required
              />
@@ -82,7 +82,7 @@ const handleSave = () => {
           <input
             name="imgurl"
             type="text"
-            value={props.movieImage}
+            value={imageURL}
             onChange={e => setImageURL(e.target.value)}
             required
              />
@@ -93,7 +93,7 @@ const handleSave = () => {
           <input
             name="releaseYear"
             type="text"
-            value={props.movieReleaseYear}
+            value={releaseYear}
             onChange={e => setReleaseYear(e.target.value)}
             required
              /> 

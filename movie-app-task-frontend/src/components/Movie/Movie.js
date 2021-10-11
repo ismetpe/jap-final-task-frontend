@@ -6,7 +6,7 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
-import Api from "../../API/API_calls"
+
 
 import axios from 'axios';
 const Movie = (props) => {

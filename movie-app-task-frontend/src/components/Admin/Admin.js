@@ -63,11 +63,11 @@ class AdminMovie extends Component {
                     {this.state.movies.map((movie) => (
                         <tr>
                             <td>{movie.id}</td>
-                            <td><img src={movie.img_url}/></td>
+                            <td><img src={movie.imgUrl}/></td>
                             <td>{movie.title}</td>
                             <td>{movie.description}</td>
-                            <td>{movie.release_year}</td>
-                            <td> <EditModalMovie movieId = {movie.id} movieImage={movie.img_url} movieTitle={movie.title} movieDescription={movie.description}  movieReleaseYear = {movie.release_year}></EditModalMovie></td>
+                            <td>{movie.releaseYear}</td>
+                            <td> <EditModalMovie movieId = {movie.id} movieImage={movie.imgUrl} movieTitle={movie.title} movieDescription={movie.description}  movieReleaseYear = {movie.releaseYear}></EditModalMovie></td>
                             
                            
                         </tr>
