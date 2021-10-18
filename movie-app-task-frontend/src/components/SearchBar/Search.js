@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Search.css'
+
+// test comment for push on  new branch
+
 const Search = (props) => (
    <form className="search" onInput={event => props.onInput(event.target.value)}>
      <input type="search" value={props.query} placeholder={props.placeholder} />
