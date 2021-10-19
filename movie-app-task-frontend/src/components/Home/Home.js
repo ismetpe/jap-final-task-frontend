@@ -33,80 +33,93 @@ export default function Home() {
 
 
   const getTop10Movies = () => {
-  
-    return axios.get(`${url}media/get_media`, {params: {  Type : "Movie"}}).then((response) => {
+
+    return axios.get(`${url}media/get_media`, { params: { Type: "Movie" } }).then((response) => {
       console.log(response.data);
       setMovies(response.data);
     })
-    .catch(function (error) {
-      console.log(error.toJSON());
-    });
+      .catch(function (error) {
+        console.log(error.toJSON());
+      });
   };
   useEffect(() => {
     getTop10Series();
   }, []);
 
   const getTop10Series = () => {
-    return axios.get(`${url}media/get_media`, {params: {  Type : "Series"}}).then((response) => {
+    return axios.get(`${url}media/get_media`, { params: { Type: "Series" } }).then((response) => {
       console.log(response.data);
       setSeries(response.data);
-    })   .catch(function (error) {
+    }).catch(function (error) {
       console.log(error.toJSON());
     });
   };
 
 
-  const LoadMoreMovies = ()=> {
-    setPage(page+10);
-    return  axios.get(`${url}media/get_media`, {params: {Pagination: page,  Type : "Movie"}}).then((response) => {
+  const LoadMoreMovies = () => {
+    setPage(page + 10);
+    return axios.get(`${url}media/get_media`, { params: { Pagination: page, Type: "Movie" } }).then((response) => {
       console.log(response.data);
       setMovies(response.data);
-    })   .catch(function (error) {
+    }).catch(function (error) {
       console.log(error.toJSON());
     });
   };
 
-  const LoadMoreSeries = ()=> {
-    setPage(page+10);
-      return  axios.get(`${url}media/get_media`, {params: {Pagination: page,  Type : "Series"}}).then((response) => {
-        console.log(response.data);
-        setSeries(response.data);
-      })   .catch(function (error) {
-        console.log(error.toJSON());
-      });
-    };
-  const LoadAllMedia = ()=> {
-    return  axios.get(`${url}media/get_media`).then((response) => {
+  const LoadMoreSeries = () => {
+    setPage(page + 10);
+    return axios.get(`${url}media/get_media`, { params: { Pagination: page, Type: "Series" } }).then((response) => {
       console.log(response.data);
-      setMedia(response.data);
-    })   .catch(function (error) {
+      setSeries(response.data);
+    }).catch(function (error) {
       console.log(error.toJSON());
     });
   };
+  const LoadAllMedia = () => {
+    return axios.get(`${url}media/get_media`).then((response) => {
+      console.log(response.data);
+      setMedia(response.data);
+    }).catch(function (error) {
+      console.log(error.toJSON());
+    });
+  };
+
+
+  const toggleListMovie = () => {
+    var x = document.getElementById("movieDiv");
+    var y = document.getElementById("seriesDiv");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      y.style.display = "none";
+    }
+  }
+  const toggleListSeries = () => {
+    var x = document.getElementById("movieDiv");
+    var y = document.getElementById("seriesDiv");
+    if (y.style.display === "none") {
+      y.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
   return (
     <div className="App">
       <Search placeholder="Search for Movie Title …" ></Search>
-      <Tabs >
-        <Tab onClick={handleClick} active={active === 0} id={0} >
-          Movies
-        </Tab>
 
-        <Tab onClick={handleClick} active={active === 1} id={1} >
-          TV Series
-        </Tab>
-      </Tabs>
-      <>
-        <Content active={active === 0}>
-          <Movies movies={movies}></Movies>
-          <button class="glow-on-hover" onClick={LoadMoreMovies}>Load more</button>
-        </Content>
-        <Content active={active === 1}>
-          <Movies movies={series}></Movies>
-          <button class="glow-on-hover" onClick={LoadMoreSeries}>Load more</button>
-        </Content>
-      </>
+      <button onClick={toggleListMovie}>Movies</button>
+      <button onClick={toggleListSeries}>Series</button>
+      <div id="movieDiv">
+        <Movies movies={movies}></Movies>
+        <button class="glow-on-hover" onClick={LoadMoreMovies}>Load more</button>
+      </div>
+      <div id="seriesDiv"> 
+        <Movies movies={series}></Movies>
+        <button class="glow-on-hover" onClick={LoadMoreSeries}>Load more</button>
+      </div>
 
-    </div>
+
+    </div >
   );
 
 }
