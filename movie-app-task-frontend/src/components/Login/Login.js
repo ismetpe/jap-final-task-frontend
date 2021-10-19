@@ -20,8 +20,8 @@ const Login = () => {
 
 
       const login = () => {
-        console.log("test");
-        return axios.post("https://localhost:5001/api/auth/login", {
+      
+        axios.post("https://localhost:5001/api/auth/login", {
             username : username,
             password : password
           }).then(response => {
@@ -29,8 +29,8 @@ const Login = () => {
            alert("success")
          
               localStorage.setItem("user", JSON.stringify(response.data.data));
-           
           });
+          history.push('/user');
       }
   
 

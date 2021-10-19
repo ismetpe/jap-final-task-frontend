@@ -75,6 +75,9 @@ export default function Home() {
       console.log(error.toJSON());
     });
   };
+
+
+
   const LoadAllMedia = () => {
     return axios.get(`${url}media/get_media`).then((response) => {
       console.log(response.data);
@@ -93,6 +96,8 @@ export default function Home() {
       y.style.display = "none";
     } 
   };
+
+
   const toggleListSeries = () => {
     var x = document.getElementById("movieDiv");
     var y = document.getElementById("seriesDiv");
@@ -108,6 +113,8 @@ export default function Home() {
       x.style.display = "none";
     
   };
+
+  
   return (
     <div className="App">
       <Search placeholder="Search for Movie Title …" onClick={search}></Search>
