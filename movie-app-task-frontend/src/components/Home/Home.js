@@ -90,35 +90,41 @@ export default function Home() {
     var y = document.getElementById("seriesDiv");
     if (x.style.display === "none") {
       x.style.display = "block";
-    } else {
       y.style.display = "none";
-    }
-  }
+    } 
+  };
   const toggleListSeries = () => {
     var x = document.getElementById("movieDiv");
     var y = document.getElementById("seriesDiv");
     if (y.style.display === "none") {
       y.style.display = "block";
-    } else {
       x.style.display = "none";
     }
-  }
+  };
+
+  const search = () => {
+    var x = document.getElementById("mainDiv");
+
+      x.style.display = "none";
+    
+  };
   return (
     <div className="App">
-      <Search placeholder="Search for Movie Title …" ></Search>
+      <Search placeholder="Search for Movie Title …" onClick={search}></Search>
 
-      <button onClick={toggleListMovie}>Movies</button>
-      <button onClick={toggleListSeries}>Series</button>
-      <div id="movieDiv">
-        <Movies movies={movies}></Movies>
-        <button class="glow-on-hover" onClick={LoadMoreMovies}>Load more</button>
+      <div id="mainDiv">
+        <button onClick={toggleListMovie}>Movies</button>
+        <button onClick={toggleListSeries}>Series</button>
+        <div id="movieDiv">
+          <Movies movies={movies}></Movies>
+          <button class="glow-on-hover" onClick={LoadMoreMovies}>Load more</button>
+        </div>
+        <div id="seriesDiv" style={{display : 'none' }}>
+          <Movies movies={series}></Movies>
+          <button class="glow-on-hover" onClick={LoadMoreSeries}>Load more</button>
+        </div>
+
       </div>
-      <div id="seriesDiv"> 
-        <Movies movies={series}></Movies>
-        <button class="glow-on-hover" onClick={LoadMoreSeries}>Load more</button>
-      </div>
-
-
     </div >
   );
 

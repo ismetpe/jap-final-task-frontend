@@ -28,9 +28,7 @@ class AdminMovie extends Component {
             });
     }
 
-
     onEditClick = (mediaId) => {
-
         this.setState({ isModalOpen: true })
         const movie = this.state.movies.find(a => a.id == mediaId);
         this.setState({ movie: movie })
@@ -38,16 +36,13 @@ class AdminMovie extends Component {
 
     handleCloseModal = () => {
         this.setState({ isModalOpen: false, movie: {} })
-
     }
 
     render() {
         const { open } = this.state
-
         return (
             <div id="modal">
-              
-  
+
               <AddMovie></AddMovie>
                 <AddScreening></AddScreening>
                 <table className="table">
@@ -57,8 +52,7 @@ class AdminMovie extends Component {
                         <th>Title</th>
                         <th>Text</th>
                         <th>Release Date</th>
-                        <th>Edit</th>
-           
+                        <th>Edit</th>        
                     </tr>
                     {this.state.movies.map((movie) => (
                         <tr>
@@ -69,7 +63,7 @@ class AdminMovie extends Component {
                             <td>{movie.releaseYear}</td>
                             <td> <EditModalMovie movieId = {movie.id} movieImage={movie.imgUrl} movieTitle={movie.title} movieDescription={movie.description}  movieReleaseYear = {movie.releaseYear}></EditModalMovie></td>
                             
-                           
+                         
                         </tr>
                     ))}
                 </table>

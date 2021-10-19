@@ -64,10 +64,7 @@ const handleSave = () => {
             value={title}
             onChange={e => setTitle(e.target.value)}
             required />
-            
-       
-        
-        
+
           Description:
           <input
             name="description"
@@ -77,7 +74,7 @@ const handleSave = () => {
             required
              />
         
-      
+
           Image url: 
           <input
             name="imgurl"
@@ -86,9 +83,7 @@ const handleSave = () => {
             onChange={e => setImageURL(e.target.value)}
             required
              />
-    
-        
-
+  
           Release year:
           <input
             name="releaseYear"
