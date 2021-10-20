@@ -1,13 +1,13 @@
 .movies {
     max-width: 60rem;
-    width: 90%;
+    width: 100%;
     margin: 2rem auto;
    
   }
   
 
   ul {
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
   }

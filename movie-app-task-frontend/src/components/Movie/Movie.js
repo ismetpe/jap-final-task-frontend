@@ -49,7 +49,7 @@ const Movie = (props) => {
     <Card  >
       <Image src={props.imageURL} wrapped ui={false} className="img" />
       <Card.Content>
-        <Card.Header>{props.title}</Card.Header>
+        <Card.Header className="title">{props.title}</Card.Header>
         <Card.Meta>
           <span className='date'>{props.release_year}</span>
         </Card.Meta>
@@ -59,7 +59,7 @@ const Movie = (props) => {
             {props.actors}
           </a>
         </Card.Content>
-        <Card.Description>
+        <Card.Description className="desc">
           {props.description}
         </Card.Description>
       </Card.Content>

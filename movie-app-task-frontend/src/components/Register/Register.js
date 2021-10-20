@@ -43,11 +43,7 @@ const Register = () => {
       }).catch(function (error) {
         console.log(error.toJSON());
       });
-
-      if (redirect == true) {
-      
         history.push('/login');
-      }
     }
   }
 

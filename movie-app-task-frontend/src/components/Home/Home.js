@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Movies from "../Movies/Movies"
-
-import Search from "../SearchBar/Search"
+import './Search.css'
 import ReactDOM from "react-dom";
 import axios from "axios";
 import { Tabs, Tab, Content } from "../tab";
@@ -35,7 +34,7 @@ export default function Home() {
   const getTop10Movies = () => {
 
     return axios.get(`${url}media/get_media`, { params: { Type: "Movie" } }).then((response) => {
-      console.log(response.data);
+
       setMovies(response.data);
     })
       .catch(function (error) {
@@ -48,7 +47,7 @@ export default function Home() {
 
   const getTop10Series = () => {
     return axios.get(`${url}media/get_media`, { params: { Type: "Series" } }).then((response) => {
-      console.log(response.data);
+
       setSeries(response.data);
     }).catch(function (error) {
       console.log(error.toJSON());
@@ -59,7 +58,7 @@ export default function Home() {
   const LoadMoreMovies = () => {
     setPage(page + 10);
     return axios.get(`${url}media/get_media`, { params: { Pagination: page, Type: "Movie" } }).then((response) => {
-      console.log(response.data);
+
       setMovies(response.data);
     }).catch(function (error) {
       console.log(error.toJSON());
@@ -69,7 +68,7 @@ export default function Home() {
   const LoadMoreSeries = () => {
     setPage(page + 10);
     return axios.get(`${url}media/get_media`, { params: { Pagination: page, Type: "Series" } }).then((response) => {
-      console.log(response.data);
+
       setSeries(response.data);
     }).catch(function (error) {
       console.log(error.toJSON());
@@ -80,7 +79,7 @@ export default function Home() {
 
   const LoadAllMedia = () => {
     return axios.get(`${url}media/get_media`).then((response) => {
-      console.log(response.data);
+
       setMedia(response.data);
     }).catch(function (error) {
       console.log(error.toJSON());
@@ -94,7 +93,7 @@ export default function Home() {
     if (x.style.display === "none") {
       x.style.display = "block";
       y.style.display = "none";
-    } 
+    }
   };
 
 
@@ -107,26 +106,49 @@ export default function Home() {
     }
   };
 
-  const search = () => {
+  const toggleListMedia = () => {
     var x = document.getElementById("mainDiv");
+    console.log("search")
+    x.style.display = "none";
+    LoadAllMedia();
 
-      x.style.display = "none";
-    
   };
 
+  const search = () => {
+    var x = document.getElementById("mainDiv");
+    console.log("search")
+    x.style.display = "none";
+    LoadAllMedia();
+
+  };
+
+  const showDiv = () => {
+    var x = document.getElementById("mediaDiv");
   
+    x.style.display = "block";
+
+  };
+
   return (
     <div className="App">
-      <Search placeholder="Search for Movie Title …" onClick={search}></Search>
+      <div onClick={toggleListMedia}>
 
-      <div id="mainDiv">
-        <button onClick={toggleListMovie}>Movies</button>
-        <button onClick={toggleListSeries}>Series</button>
+        <form className="search" >
+          <input type="search" placeholder="Search for a movie or series" onChange={search}/>
+        </form>
+        <div id="mediaDiv">
+          <Movies movies={media}></Movies>
+       
+        </div>
+      </div>
+      <div id="mainDiv" onClick={showDiv}>
+        <button className="button-tab" onClick={toggleListMovie}>Movies</button>
+        <button className="button-tab" onClick={toggleListSeries}>Series</button>
         <div id="movieDiv">
           <Movies movies={movies}></Movies>
           <button class="glow-on-hover" onClick={LoadMoreMovies}>Load more</button>
         </div>
-        <div id="seriesDiv" style={{display : 'none' }}>
+        <div id="seriesDiv" style={{ display: 'none' }}>
           <Movies movies={series}></Movies>
           <button class="glow-on-hover" onClick={LoadMoreSeries}>Load more</button>
         </div>

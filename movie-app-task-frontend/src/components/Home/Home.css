@@ -19,7 +19,10 @@
   font-weight: 400;
   overflow-x: hidden;
 }
-
+.button-tab {
+  background-color: rgb(33, 57, 136);
+  
+}
 button {
   font-family: inherit;
   border: 0;
@@ -181,3 +184,4 @@ button:focus {
     background-position: 0 0;
   }
 }
+
