@@ -5,8 +5,51 @@ import { useFormik } from "formik";
 import "./Register.css";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
+
 
 const Register = () => {
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [repeatpassword, setRepeatpassword] = useState();
+  const [redirect, setRedirect] = useState();
+  const history = useHistory();
+  const register = () => {
+  
+    if (password != repeatpassword) {
+      alert("Passwords did not match!");
+
+    } else {
+
+      axios.post("https://localhost:5001/api/auth/register", {
+        username: username,
+        password: password
+      }).then(response => {
+        
+        if (response.data.message == "Registered successfully!") {
+          alert("Registered successfully!")
+          setRedirect(true);
+          console.log(redirect)
+        }
+
+        else if (response.data.message == "User already exists.") {
+          alert("User already exists.")
+          setRedirect(false);
+          console.log(redirect)
+        }
+
+      }).catch(function (error) {
+        console.log(error.toJSON());
+      });
+
+      if (redirect == true) {
+      
+        history.push('/login');
+      }
+    }
+  }
 
   return (
     <Fragment>
@@ -19,8 +62,9 @@ const Register = () => {
                 type="username"
                 placeholder="Username"
                 name="username"
-                
-               
+
+                value={username}
+                onChange={e => setUsername(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -29,21 +73,23 @@ const Register = () => {
                 placeholder="Password"
                 name="password"
                 minLength="6"
-                
-              
+
+                value={password}
+                onChange={e => setPassword(e.target.value)}
               />
             </div>
             <div className="form-group">
               <input
-                type="repeat password"
+                type="password"
                 placeholder="Repeat password"
                 name="repeat password"
                 minLength="6"
-                
-              
+                value={repeatpassword}
+                onChange={e => setRepeatpassword(e.target.value)}
+
               />
             </div>
-            <input type="submit" className="Register-btn" value="Register" />
+            <button type="submit" className="Register-btn" value="Register" onClick={register} >Register</button>
           </form>
         </div>
       </div>

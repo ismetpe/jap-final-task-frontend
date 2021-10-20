@@ -29,6 +29,8 @@ const Login = () => {
            alert("success")
          
               localStorage.setItem("user", JSON.stringify(response.data.data));
+          }).catch(function (error) {
+            console.log(error.toJSON());
           });
           history.push('/user');
       }
