@@ -20,7 +20,7 @@ export default function Home() {
   const [movies, setMovies] = useState([]);
   const [series, setSeries] = useState([]);
   const [page, setPage] = useState(10);
-
+  const[search, setSearch] = useState("");
   const [media, setMedia] = React.useState([]);
 
 
@@ -108,17 +108,19 @@ export default function Home() {
 
   const toggleListMedia = () => {
     var x = document.getElementById("mainDiv");
-    console.log("search")
     x.style.display = "none";
     LoadAllMedia();
 
   };
 
-  const search = () => {
-    var x = document.getElementById("mainDiv");
-    console.log("search")
-    x.style.display = "none";
-    LoadAllMedia();
+  const searchMedia = (searchValue) => {
+     axios.get(`${url}media/get_media`, { params: { SearchTerm: searchValue  } }).then((response) => {
+     
+      console.log(response.data)
+      setMedia(response.data);
+    }).catch(function (error) {
+      console.log(error.toJSON());
+    });
 
   };
 
@@ -134,7 +136,13 @@ export default function Home() {
       <div onClick={toggleListMedia}>
 
         <form className="search" >
-          <input type="search" placeholder="Search for a movie or series" onChange={search}/>
+          <input
+           type="search"
+            placeholder="Search for a movie or series"
+             onChange={e => searchMedia(e.target.value)}
+             
+             />
+             {console.log(search)}
         </form>
         <div id="mediaDiv">
           <Movies movies={media}></Movies>
