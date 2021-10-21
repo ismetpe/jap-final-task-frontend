@@ -65,7 +65,7 @@ export default function AddMovie(){
             required />
         </label>
     
-        <button>Add</button>
+        <button className="btn-add">Add</button>
       </form>
     );
 }

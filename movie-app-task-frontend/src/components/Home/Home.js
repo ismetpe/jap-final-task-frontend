@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Movies from "../Movies/Movies"
-import './Search.css'
 import ReactDOM from "react-dom";
 import axios from "axios";
 import { Tabs, Tab, Content } from "../tab";
 import './Home.css'
+
+import BackIcon from "../Home/img/icons8-back-40.png"
 export default function Home() {
   const [active, setActive] = useState(0);
 
@@ -20,7 +21,7 @@ export default function Home() {
   const [movies, setMovies] = useState([]);
   const [series, setSeries] = useState([]);
   const [page, setPage] = useState(10);
-  const[search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
   const [media, setMedia] = React.useState([]);
 
 
@@ -108,14 +109,19 @@ export default function Home() {
 
   const toggleListMedia = () => {
     var x = document.getElementById("mainDiv");
+    var y = document.getElementById("mediaDiv");
+    var a = document.getElementById("backButton");
     x.style.display = "none";
+    y.style.display = "block";
+    a.style.display = "block";
+
     LoadAllMedia();
 
   };
 
   const searchMedia = (searchValue) => {
-     axios.get(`${url}media/get_media`, { params: { SearchTerm: searchValue  } }).then((response) => {
-     
+    axios.get(`${url}media/get_media`, { params: { SearchTerm: searchValue } }).then((response) => {
+
       console.log(response.data)
       setMedia(response.data);
     }).catch(function (error) {
@@ -126,27 +132,41 @@ export default function Home() {
 
   const showDiv = () => {
     var x = document.getElementById("mediaDiv");
-  
+
     x.style.display = "block";
 
   };
-
+  const backToTabs = () => {
+      var x = document.getElementById("mainDiv");
+    var y = document.getElementById("mediaDiv");
+    // x.style.display = "block";
+    if (y.style.display === "block") {
+      y.style.display = "none";
+      x.style.display = "block";
+      
+    console.log("back")
+    }
+ 
+  
+  }
   return (
-    <div className="App">
+    <div >
       <div onClick={toggleListMedia}>
 
         <form className="search" >
           <input
-           type="search"
+            type="search"
+            className="search"
             placeholder="Search for a movie or series"
-             onChange={e => searchMedia(e.target.value)}
-             
-             />
-             {console.log(search)}
+            onChange={e => searchMedia(e.target.value)}
+
+          />
+        <button style={{ display: 'none' }}  id="backButton" onClick={backToTabs} > <img src={BackIcon} /></button>
         </form>
-        <div id="mediaDiv">
+        <div id="mediaDiv" style={{ display: 'none' }} >
+      
           <Movies movies={media}></Movies>
-       
+
         </div>
       </div>
       <div id="mainDiv" onClick={showDiv}>

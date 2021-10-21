@@ -97,7 +97,7 @@ export default function AddScreening() {
                 {movies.map((movie) => (<option key={movie.id} value={movie.id}>{movie.title}</option>))}
                 
             </select>
-            <button  >Add screening</button>
+            <button className="button-add" >Add screening</button>
         </form>
     );
 }

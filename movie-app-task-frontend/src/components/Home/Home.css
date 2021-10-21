@@ -23,10 +23,19 @@
   background-color: rgb(33, 57, 136);
   
 }
-button {
-  font-family: inherit;
-  border: 0;
+.button-tab{
+ width: 50%;
   cursor: pointer;
+ font-size: 30px;;
+  border: none;
+  border-radius: 4px;
+  background-color: #131b20;
+  color: #d6d1d5;
+  border: 1px solid #fff;
+  display:inline-block;
+  margin: auto;
+  height:65px;
+ 
 }
 button:focus {
   outline: 0;
@@ -185,3 +194,40 @@ button:focus {
   }
 }
 
+#backButton{
+  width: 50%;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 4px;
+  background-color: #131b20;
+  color: #d6d1d5;
+  border: 1px solid #fff;
+  display:inline-block;
+  margin: auto;
+  height:65px;
+}
+
+input {
+  border: 0;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.search {
+  font-size: 1.5rem;
+  margin: 1.5em auto 3em;
+  max-width: 80%;
+  
+}
+
+.search [type='search'] {
+  background-color: #131b20;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-align: center;
+  width: 100%;
+  display:inline-block;
+  
+}

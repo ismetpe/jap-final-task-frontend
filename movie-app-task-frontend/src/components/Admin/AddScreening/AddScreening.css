@@ -60,7 +60,7 @@
     margin-right: 10px;
   }
   
-  button {
+  .button-add {
     min-width: 100%;
     cursor: pointer;
     margin-right: 0.25em;
