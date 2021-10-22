@@ -3,34 +3,64 @@ import { Tabs, Tab, Content } from "../tab";
 import './User.css'
 import BoughtTickets from './UsersBougthTicketList/BoughtTickets';
 import BuyTicket from './BuyTicket/BuyTicket';
-export default function User() {
-  const [active, setActive] = useState(0);
-  var token = localStorage.getItem("user");
-  const handleClick = e => {
-    const index = parseInt(e.target.id, 0);
-    if (index !== active) {
-      setActive(index);
-    }
-  };
-const ispisi =() =>{
-  const tokenParts = token.split('.');
-const encodedPayload = tokenParts[1];
-const rawPayload = atob(encodedPayload);
-const user = JSON.parse(rawPayload);
-console.log(user.username); // outputs 'bob'
-}
-  return (
-    <div className="App">
-      {console.log(token)}
-        <h2>
-WELCOME USER 
-    </h2>
-    <button onClick={ispisi}>Click me!</button>
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-   
-        <BuyTicket></BuyTicket>
-        <BoughtTickets id={1}></BoughtTickets>
+export default function User() {
+
+  var token = localStorage.getItem("user");
+  const history = useHistory();
+
+  const [UserID, setUserID] = useState();
+
+  const [name, setName] = useState();
+
+  const [tickets, setTickets] = useState([]);     
  
+
+  const logout = (e) => {
+    window.localStorage.removeItem('user'); 
+    history.push("/login");
+  }
+
+
+  useEffect(() => {
+      getTickets();
+    }, []);
+
+  const getTickets = () => {
+    
+    var jwt = require("jsonwebtoken");  
+  
+    var decode1 = jwt.decode(token);  
+   
+    
+    setName(decode1.unique_name);
+    setUserID(decode1.nameid);
+   
+    if(UserID != undefined)
+      return axios.get("https://localhost:5001/api/user/bought_tickets" +"?id="  + 8).then((response) => {
+          console.log(response.data);
+        setTickets(response.data);
+      })
+          .catch(function (error) {
+              console.log(error.toJSON());
+          });
+  }
+
+  return (
+    <div className="App" >
+    
+      <h2>
+        WELCOME {name}
+      </h2>
+      <button onClick={logout}>Logout</button>
+
+
+
+      <BuyTicket id={UserID}></BuyTicket>
+      <BoughtTickets tickets={tickets}></BoughtTickets>
+
 
     </div>
   );

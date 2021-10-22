@@ -6,25 +6,6 @@ import Drawer from 'react-drag-drawer'
 
 export default function  BoughtTickets (props){
  
-    const [tickets, setTickets] = useState([]);
-
-
-    useEffect(() => {
-        getTickets();
-      }, []);
-
-
-
-    const getTickets = () => {
-        const url = "https://localhost:5001/api/"
-        return axios.get(`${url}user/bought_tickets`, { params: { id : props.id} }).then((response) => {
-            console.log(response.data);
-          setTickets(response.data);
-        })
-            .catch(function (error) {
-                console.log(error.toJSON());
-            });
-    }
 
 
    
@@ -40,7 +21,7 @@ export default function  BoughtTickets (props){
 
            
                     </tr>
-                    {tickets.map((ticket) => (
+                    {props.tickets.map((ticket) => (
                         <tr>
                             <td>{ticket.id}</td>
                             <td>{ticket.price}</td>

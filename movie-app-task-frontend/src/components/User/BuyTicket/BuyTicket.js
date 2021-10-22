@@ -51,6 +51,7 @@ export default function BuyTicket(props) {
         console.log(e.target.value);
         const index = e.target.value;
         setNumberOfTickets(index);
+        
         this.handleSubmit();
     };
 
@@ -64,7 +65,7 @@ export default function BuyTicket(props) {
 
     const buyTicket = (e) => {
         
-        return axios.post("https://localhost:5001/api/screenings/buy_ticket", { UserID: 1, ScreeningID: screeningId, NumberOfTickets : numberOfTickets }).then((response) => {
+        return axios.post("https://localhost:5001/api/screenings/buy_ticket", { UserID: props.id, ScreeningID: screeningId, NumberOfTickets : numberOfTickets }).then((response) => {
             console.log(response.data);
             if (response.status === 200) {
             alert("You have successfully bought_ticket/s");

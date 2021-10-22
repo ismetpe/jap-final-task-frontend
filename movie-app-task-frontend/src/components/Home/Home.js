@@ -6,7 +6,7 @@ import axios from "axios";
 import { Tabs, Tab, Content } from "../tab";
 import './Home.css'
 
-import BackIcon from "../Home/img/icons8-back-40.png"
+
 export default function Home() {
   const [active, setActive] = useState(0);
 
@@ -161,7 +161,7 @@ export default function Home() {
             onChange={e => searchMedia(e.target.value)}
 
           />
-        <button style={{ display: 'none' }}  id="backButton" onClick={backToTabs} > <img src={BackIcon} /></button>
+        <button style={{ display: 'none' }}  id="backButton" onClick={backToTabs} > Back</button>
         </form>
         <div id="mediaDiv" style={{ display: 'none' }} >
       
